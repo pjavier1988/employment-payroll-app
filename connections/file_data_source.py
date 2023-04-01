@@ -7,5 +7,5 @@ class FileDataSource(DataSource):
 
     def read_data(self):
         with open(self.filename, 'r') as f:
-            data = f.read()
+            data = f.readlines()
         return data
