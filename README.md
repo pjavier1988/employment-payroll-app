@@ -32,6 +32,22 @@ PEDRO=TU01:00-03:00,SA12:00-14:00,SU19:00-21:00
 JAVIER=MO10:00-15:00,TU10:00-13:00,TH01:00-04:00,SA14:00-18:00,SU20:00-21:00
 LUIS=MO10:00-11:00,TH01:00-05:00,SA14:00-18:00,SU18:00-21:00
 ```
+Output: indicate how much the employee has to be paid
+For example:
+
+Case 1:
+INPUT
+RENE=MO10:00-12:00,TU10:00-12:00,TH01:00-03:00,SA14:00-18:00,SU20:00-21:00
+
+OUTPUT:
+The amount to pay RENE is: 215 USD
+
+Case 2:
+INPUT
+ASTRID=MO10:00-12:00,TH12:00-14:00,SU20:00-21:00
+
+OUTPUT:
+The amount to pay ASTRID is: 85 USD
 ## 2. Explanation of Architecture
 
 The system is divided into several packages: domain, repositories, services, and tests.
