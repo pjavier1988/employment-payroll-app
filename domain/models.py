@@ -1,5 +1,4 @@
 from datetime import datetime
-from typing import List
 
 
 class Rate:
@@ -19,6 +18,6 @@ class Schedule:
 
 
 class Employee:
-    def __init__(self, name: str, schedules: List[Schedule]):
+    def __init__(self, name: str, amount: float):
         self.name = name
-        self.schedules = schedules
+        self.amount = amount
