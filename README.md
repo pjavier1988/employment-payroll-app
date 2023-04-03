@@ -31,13 +31,7 @@ The goal of this exercise is to calculate the total that the company has to pay 
 | | | |
 | **SA** | Saturday |
 | **SU** | Sunday |
-MO: Monday
-TU: Tuesday
-WE: Wednesday
-TH: Thursday
-FR: Friday
-SA: Saturday
-SU: Sunday
+
 
 Input: the name of an employee and the schedule they worked, indicating the time and hours. This should be a .txt file with at least five sets of data. The sample data used is as shows below:
 ```sh
