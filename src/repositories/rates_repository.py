@@ -1,8 +1,6 @@
-from repositories.repository import Repository
-from connections.file_data_source import FileDataSource
-from domain.models import Rate
-
-from datetime import datetime, timedelta
+from datetime import datetime
+from src.repositories.repository import Repository
+from src.domain.models import Rate
 
 
 class RatesRepository(Repository):

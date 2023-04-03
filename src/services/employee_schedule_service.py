@@ -1,6 +1,6 @@
-from repositories.employee_schedule_repository \
+from src.repositories.employee_schedule_repository \
     import EmployeeScheduleRepository
-from repositories.rates_repository import RatesRepository
+from src.repositories.rates_repository import RatesRepository
 
 
 class EmployeeScheduleService:
@@ -11,7 +11,7 @@ class EmployeeScheduleService:
         self.employee_schedule_repository = employee_schedule_repository
         self.rate_repository = rate_repository
 
-    def calculate_payment_by_employee(self, employee_name: str):
+    def calculate_payment_by_employee(self, employee_name: str) -> float:
         employee_schedules = self.employee_schedule_repository.read_data()
         employee_schedule = employee_schedules.get(employee_name)
         total_payment = 0

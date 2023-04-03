@@ -1,10 +1,13 @@
+import sys
+import os
+
 import unittest
 from datetime import datetime
 from unittest.mock import MagicMock
-from repositories.employee_schedule_repository import EmployeeScheduleRepository
-from repositories.rates_repository import RatesRepository
-from services.employee_schedule_service import EmployeeScheduleService
-from domain.models import Schedule
+from src.repositories.employee_schedule_repository import EmployeeScheduleRepository
+from src.repositories.rates_repository import RatesRepository
+from src.services.employee_schedule_service import EmployeeScheduleService
+from src.domain.models import Schedule
 from unittest.mock import patch
 
 
@@ -76,7 +79,7 @@ class TestServices(unittest.TestCase):
         self.assertEqual(payment_value, expected_payment_value)
 
     def test_when_input_employee_is_rene_pyament_value_is215(self):
-        with patch('repositories.employee_schedule_repository.EmployeeScheduleRepository.read_data') as mock_get_data:
+        with patch('src.repositories.employee_schedule_repository.EmployeeScheduleRepository.read_data') as mock_get_data:
             expected_name = "RENE"
             expected_payment_value = 215.0
             payroll_repository = EmployeeScheduleRepository(self.mock_file)
@@ -93,7 +96,7 @@ class TestServices(unittest.TestCase):
             self.assertEqual(payment_value, expected_payment_value)
 
     def test_when_input_employee_is_astrid_pyament_value_is85(self):
-        with patch('repositories.employee_schedule_repository.EmployeeScheduleRepository.read_data') as mock_get_data:
+        with patch('src.repositories.employee_schedule_repository.EmployeeScheduleRepository.read_data') as mock_get_data:
             expected_name = "ASTRID"
             expected_payment_value = 85.0
             payroll_repository = EmployeeScheduleRepository(self.mock_file)
