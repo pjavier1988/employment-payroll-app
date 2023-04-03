@@ -1,3 +1,7 @@
+[![unittest](https://img.shields.io/github/actions/workflow/status/icon-project/icon-sdk-python/iconsdk-workflow.yml?branch=master&label=unittest&logo=github)](https://github.com/icon-project/icon-sdk-python/actions/workflows/iconsdk-workflow.yml)
+[![PyPI - latest](https://img.shields.io/pypi/v/iconsdk?label=latest&logo=pypi)](https://pypi.org/project/iconsdk)
+[![PyPI - Python](https://img.shields.io/pypi/pyversions/iconsdk?logo=pypi)](https://pypi.org/project/iconsdk)
+
 # Employee Payroll System
 ## ACME Company
 
@@ -5,17 +9,28 @@ The Employee Payroll System is a Python program that calculates the amount that 
 
 The company ACME offers their employees the flexibility to work the hours they want. They will pay for the hours worked based on the day of the week and time of day, according to the following table:
 
-Monday - Friday
-00:01 - 09:00 25 USD
-09:01 - 18:00 15 USD
-18:01 - 00:00 20 USD
-Saturday and Sunday
-00:01 - 09:00 30 USD
-09:01 - 18:00 20 USD
-18:01 - 00:00 25 USD
+| Day | Schedule | Rate |
+| :----------- | :------------ | :----: |
+| **Weekdays** | 00:01 - 09:00 | 25 USD |
+| **Weekdays** | 09:01 - 18:00 | 15 USD |
+| **Weekdays** | 18:01 - 00:00 | 20 USD |
+| | | |
+| **Weekends** | 00:01 - 09:00 | 30 USD |
+| **Weekends** | 09:01 - 18:00 | 20 USD |
+| **Weekends** | 18:01 - 00:00 | 25 USD |
 
 The goal of this exercise is to calculate the total that the company has to pay an employee, based on the hours they worked and the times during which they worked. The following abbreviations will be used for entering data:
 
+| Abbreviation | Day |
+| :----------- | :------------ |
+| **MO** | Monday |
+| **TU** | Tuesday |
+| **WE** | Wednesday |
+| **TH** | Thursday |
+| **FR** | Friday |
+| | | |
+| **SA** | Saturday |
+| **SU** | Sunday |
 MO: Monday
 TU: Tuesday
 WE: Wednesday
@@ -32,6 +47,8 @@ PEDRO=TU01:00-03:00,SA12:00-14:00,SU19:00-21:00
 JAVIER=MO10:00-15:00,TU10:00-13:00,TH01:00-04:00,SA14:00-18:00,SU20:00-21:00
 LUIS=MO10:00-11:00,TH01:00-05:00,SA14:00-18:00,SU18:00-21:00
 ```
+**The example file is location under the data directory**
+
 Output: indicate how much the employee has to be paid
 For example:
 
@@ -48,9 +65,15 @@ ASTRID=MO10:00-12:00,TH12:00-14:00,SU20:00-21:00
 
 OUTPUT:
 The amount to pay ASTRID is: 85 USD
+
+
+
 ## 2. Explanation of Architecture
 
-The system is divided into several packages: domain, repositories, services, and tests.
+The system is divided into several packages: src: domain, repositories, services; and tests.
+That's a common convention to keep the tests in a separate directory or package. This separation helps to keep the production code and the testing code organized and maintainable.
+By keeping the test code in a separate package, you can also easily exclude the test code when you distribute your application. You can use tools like setuptools to build a distribution package that excludes the test files. This can make the distribution smaller and more efficient.
+
 - The domain package contains the classes that represent the core concepts of the system, such as Employee, Schedule, and Rate.
 - The repositories package contains classes that handle data access, such as EmployeeScheduleRepository and RateRepository.
 - The services package contains the main business logic of the system, such as the EmployeeScheduleService class, which calculates the pay for employees based on their work schedules and the rates that apply to each shift.
@@ -76,25 +99,50 @@ The solution follows the SOLID principles of object-oriented design, including S
 ## 6. Methodology and instructions on how to run the program locally
 
 To run the program locally, follow these steps:
-
-To run the program locally, follow these steps:
-
-    - Clone the repository to your local machine.
-    - Open a terminal and navigate to the root directory of the project.
-    - Create a virtual environment using the following command: python -m venv venv.
-    - Activate the virtual environment by running the command: source venv/bin/activate (on macOS/Linux) or venv\Scripts\activate (on Windows).
-    - Run the program using the command: python3 main.py <input_file_path>, where <input_file_path> is the path to the input text file.
+1. Clone the repo
+   ```sh
+   git clone https://github.com/pjavier1988/employment-payroll-app.git
+   ```
+2. Open a terminal and navigate to the root directory of the project.
+   ```sh
+   cd /your/directory/employment-payroll-app
+   ```
+3. Create a virtual environment using the following command:
+   ```sh
+    python -m venv venv
+   ```
+4. Activate the virtual environment by running the command:
+   ```sh
+    source venv/bin/activate (on macOS/Linux)
+    or
+    venv\Scripts\activate (on Windows)
+   ```
+5. Run the program using the command:
+   ```sh
+    python3 src/main.py
+    or
+    venv\Scripts\activate (on Windows)
+   ```
 
 ## Testing
-
+Payroll System was developed based on TDD implementation.
 The Payroll System is thoroughly tested using the unittest library and MagicMock for mocking. The tests covers repositories, and services. To run the tests, you can use the following command:
 ```sh
-python3 -m unittest
+python3 -m unittest -v
 ```
 This will run all the tests in the project and provide verbose output.
 
-
-
+You should get an oputput as follows:
+   ```sh
+$ python3 -m unittest -v
+test_when_read_file_returns_dict (tests.repositories.test_repositories.TestRepositories) ... ok
+test_when_hours_worked_on_monday_betwwen_10_and_12_return30_dollars (tests.services.test_services.TestServices) ... ok
+test_when_input_employee_is_astrid_pyament_value_is85 (tests.services.test_services.TestServices) ... ok
+test_when_input_employee_is_rene_pyament_value_is215 (tests.services.test_services.TestServices) ... ok
+----------------------------------------------------------------------
+Ran 4 tests in 0.016s
+OK
+```
 
 ## License
 
