@@ -1,10 +1,12 @@
+import sys
+import os
 import unittest
 from unittest.mock import (
     MagicMock,
     patch
     )
 
-from repositories.employee_schedule_repository import EmployeeScheduleRepository
+from src.repositories.employee_schedule_repository import EmployeeScheduleRepository
 
 
 class TestRepositories(unittest.TestCase):
@@ -37,7 +39,7 @@ class TestRepositories(unittest.TestCase):
                                    splitlines())
 
     def test_when_read_file_returns_dict(self):
-        with patch("repositories.employee_schedule_repository.EmployeeScheduleRepository.connect") as mock_get_data:
+        with patch("src.repositories.employee_schedule_repository.EmployeeScheduleRepository.connect") as mock_get_data:
             expected_name = "RENE"
             payroll_system = EmployeeScheduleRepository(self.mock_file)
             mock_get_data.return_value = self.mock_file.return_value

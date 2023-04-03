@@ -1,8 +1,13 @@
+#pylint: disable=import-error
+import sys
+import os
+from collections import defaultdict
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 from repositories.employee_schedule_repository \
     import EmployeeScheduleRepository
 from services.employee_schedule_service import EmployeeScheduleService
 from repositories.rates_repository import RatesRepository
-from collections import defaultdict
 
 
 class PayrollSystem:
@@ -28,7 +33,7 @@ class PayrollSystem:
 
 
 def main():
-    employee_schedule_repository = EmployeeScheduleRepository("employee_schedule.txt")
+    employee_schedule_repository = EmployeeScheduleRepository("data/employee_schedule.txt")
 
     rates = [
             ('MO', '00:01-09:00', 25),
